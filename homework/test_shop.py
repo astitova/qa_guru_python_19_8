@@ -1,5 +1,3 @@
-from logging import exception
-
 import pytest
 from homework.models import Product
 from homework.models import Cart
