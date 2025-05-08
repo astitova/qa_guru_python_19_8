@@ -66,24 +66,29 @@ class TestCart:
         print(exception.value)
 
     def test_cart_remove_product(self, cart, product):
-        #Удаление части товаров из корзины
+        # Удаление части товаров из корзины
         cart.add_product(product, 10)
         cart.remove_product(product, 2)
         assert cart.products[product] == 8
 
-        #Удаление всех товаров из корзины
+        # Удаление всех товаров из корзины
         cart.add_product(product, 1000)
         cart.remove_product(product)
         assert cart.products == {}
 
-        #Удаление нулевого количества товаров
+        # Удаление нулевого количества товаров
         cart.add_product(product, 1)
         cart.remove_product(product, 0)
         assert cart.products[product] == 1
 
-        #Удаление большего количества товаров
+        # Удаление большего количества товаров
         cart.add_product(product, 5)
         cart.remove_product(product, 10)
+        assert cart.products == {}
+
+        # Удаление такого же количества товаров, как в корзине
+        cart.add_product(product, 7)
+        cart.remove_product(product, 7)
         assert cart.products == {}
 
     def test_cart_clear(self, cart, product):
